@@ -8,6 +8,14 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+typedef struct s_moves
+{
+    int *up;
+    int *down;
+    int *left;
+    int *right;
+}              t_moves;
+
 typedef struct s_bfs
 {
     int x;
@@ -34,8 +42,9 @@ int *position(char **map,size_t line_size,char c);
 /************bfs********** */
 void valid_path(char **map,size_t line_size);
 void bfs(char **map,size_t line_size,int *p,int *e);
-
+t_moves allocate_moves(int x,int y);
 /************queue_operations */
+int isvisited(t_bfs *a,int x,int y);
 t_bfs *new_node(int x,int y);
 t_bfs *last_node(t_bfs *a);
 #endif

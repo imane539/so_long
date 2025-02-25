@@ -1,4 +1,15 @@
 #include "so_long.h"
+int isvisited(t_bfs *a,int x,int y)
+{
+    while(a->next)
+    {
+        if(a->x ==x && a->y == y)
+            return 1;
+        a=a->next;
+    }
+    return 0;
+
+}
 t_bfs *new_node(int x,int y)
 {
     t_bfs *new;
@@ -19,6 +30,17 @@ t_bfs *last_node(t_bfs *a)
         a = a->next;
     }
     return a;
+}
+void add_next(t_bfs **a,t_bfs *new)
+{
+    t_bfs *last;
+    if(!(*a))
+    (*a) = new;
+    else
+    {
+        last = last_node(*a);
+        last->next = new;
+    }
 }
 // void create_queue(t_bfs **a,int x,int y,int visited)
 // {
