@@ -44,11 +44,10 @@ void check_wall(char **map ,size_t line)
 void check_map(char **map)
 {
     size_t line_size;
-    // char *components;
     line_size = check_rectangular(map);
     check_wall(map,line_size);
     check_components(map,line_size);
-    
+    valid_path(map,line_size);
 }
 char **read_map(int fd)
 {

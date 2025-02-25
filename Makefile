@@ -2,6 +2,8 @@ CFLAGS = -Wall -Werror -Wextra #-ggdb3 #-fsanitize=address -g3
 
 SRC =so_long.c parsing.c \
 map_operations.c \
+bfs.c \
+queue_operations.c \
 components.c \
 get_next_line/get_next_line.c \
 get_next_line/get_next_line_utils.c
