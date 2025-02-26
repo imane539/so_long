@@ -61,7 +61,6 @@ int the_first(t_bfs *a,int *p,int *count)
         {
             p[0] = a->x;
             p[1] = a->y;
-            // (*count)++;
             return 1;
         }
         a = a->next;
@@ -83,7 +82,6 @@ void bfs(char **map,int collectible,int *p,int *e)
     {
         same_index = the_same_index(*a,index);
         index++;
-
         if(!the_first(*a,p,&count) && same_index == 0)
             break;
         count++;
@@ -91,25 +89,11 @@ void bfs(char **map,int collectible,int *p,int *e)
         {
                 coll+=valid_moves(map,p,a,index);
                 same_index--;
-                 if(same_index == 0 || !the_first(*a,p,&count))
+                if(same_index == 0 || !the_first(*a,p,&count))
                     break;
-        count++;
-                
+                count++;
         }
-
     }
      if(collectible != coll || !check_exit(*a,e))
-        ft_putstr_fd("invalid path",1);
-    else 
-    ft_putstr_fd("valid",1);
-    while(*a)
-    {
-        printf("index->%d\n",(*a)->index);
-        printf("x->%d\n",(*a)->x);
-        printf("y->%d\n",(*a)->y);
-
-        (*a) = (*a)->next;
-    }
-   
-
+        ft_error("invalid path");
 }

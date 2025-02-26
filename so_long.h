@@ -34,7 +34,7 @@ char **read_map(int fd);
 size_t check_rectangular(char **map);
 void check_wall(char **map,size_t line);
 void check_map(char **map);
-
+void check_caracter(char **map);
 /**********components**** */
 void check_components(char **map,size_t line_size);
 int count_components(char *str,size_t line_size,char c);
@@ -43,8 +43,10 @@ int size_queue(t_bfs *a);
 int check_exit(t_bfs *a,int *e);
 /************bfs********** */
 void valid_path(char **map,size_t line_size);
+void change_moves(int *x,int *y,int moves);
+int valid_moves(char **map,int *p,t_bfs **a,int index);
+int the_first(t_bfs *a,int *p,int *count);
 void bfs(char **map,int collectible,int *p,int *e);
-t_moves allocate_moves(int x,int y);
 
 /************queue_operations */
 int isvisited(t_bfs *a,int x,int y);

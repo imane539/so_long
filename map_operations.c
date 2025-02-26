@@ -41,11 +41,29 @@ void check_wall(char **map ,size_t line)
         i++;
     }
 }
+void check_caracter(char **map)
+{
+    int i;
+    int j;
+    i = 0;
+    while(map[i])
+    {
+        j = 0;
+        while(map[i][j])
+        {
+            if(map[i][j] != '1' && map[i][j] != 'C' && map[i][j] != '0' && map[i][j] != 'E' && map[i][j] != 'P')
+            ft_error("invalid caracter");
+            j++;
+        }
+        i++;
+    }
+}
 void check_map(char **map)
 {
     size_t line_size;
     line_size = check_rectangular(map);
     check_wall(map,line_size);
+    check_caracter(map);
     check_components(map,line_size);
     valid_path(map,line_size);
 }
@@ -58,7 +76,6 @@ char **read_map(int fd)
 
     line = NULL;
     buf = get_next_line(fd);
-
     while(buf)
     {
         if(!line)
@@ -70,7 +87,6 @@ char **read_map(int fd)
             line = ft_strdup(tmp);
             free(tmp);
         }
-
         free(buf);
         buf = get_next_line(fd);
     }
