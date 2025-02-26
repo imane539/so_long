@@ -1,4 +1,17 @@
 #include "so_long.h"
+int size_queue(t_bfs *a)
+{
+    int size ;
+    size = 0;
+    if(!a)
+    return size;
+    while(a)
+    {
+        size++;
+        a = a->next;
+    }
+    return size;
+}
 int *position(char **map,size_t line_size,char c)
 {
     size_t i;
@@ -24,6 +37,16 @@ int *position(char **map,size_t line_size,char c)
         j++;
     }
     return position;
+}
+int check_exit(t_bfs *a,int *e)
+{
+    while(a)
+    {
+        if( a->x == e[0] && a->y == e[1])
+            return 1;
+        a=a->next;
+    }
+    return 0;
 }
 void check_components(char **map,size_t line_size)
 {
