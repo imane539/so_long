@@ -10,7 +10,7 @@ size_t check_rectangular(char **map)
     while(map[i])
     {
         if(ft_strlen(map[i]) != size)
-            ft_error("the map is not rectangular");
+            ft_error("the map is not rectangular",map,NULL,1);
         i++;
     }
     return size;
@@ -19,6 +19,7 @@ void check_wall(char **map ,size_t line)
 {
     int (i),(j),(size);
     
+    size = 0;
     i = 0;
     while(map[size])
         size++;
@@ -30,13 +31,13 @@ void check_wall(char **map ,size_t line)
             while(map[i][j])
             {
                 if(map[i][j++] != '1')
-                    ft_error("The map must be enclosed/surrounded by walls");
+                    ft_error("The map must be enclosed/surrounded by walls",map,NULL,1);
             }
         }
         else
         {
             if(map[i][0] != '1' || map[i][line - 1] != '1')
-                ft_error("The map must be enclosed/surrounded by walls");
+                ft_error("The map must be enclosed/surrounded by walls",map,NULL,1);
         }
         i++;
     }
@@ -52,7 +53,7 @@ void check_caracter(char **map)
         while(map[i][j])
         {
             if(map[i][j] != '1' && map[i][j] != 'C' && map[i][j] != '0' && map[i][j] != 'E' && map[i][j] != 'P')
-            ft_error("invalid caracter");
+            ft_error("invalid character",map,NULL,1);
             j++;
         }
         i++;
@@ -91,5 +92,6 @@ char **read_map(int fd)
         buf = get_next_line(fd);
     }
     map = ft_split(line,'\n');
+    free(line);
     return map;
 }

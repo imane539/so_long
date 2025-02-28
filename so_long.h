@@ -4,7 +4,7 @@
 
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
-
+#include "mlx.h"
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -26,7 +26,7 @@ typedef struct s_bfs
 }              t_bfs;
 
 /**********parsing file****** */
-void ft_error(char *str);
+int ft_error(char *str,char **map,t_bfs **a,int e);
 int check_argument(char *av);
 
 /**********map_operations**** */
@@ -43,11 +43,10 @@ int size_queue(t_bfs *a);
 int check_exit(t_bfs *a,int *e);
 /************bfs********** */
 void valid_path(char **map,size_t line_size);
-void change_moves(int *x,int *y,int moves);
 int valid_moves(char **map,int *p,t_bfs **a,int index);
-int the_first(t_bfs *a,int *p,int *count);
-void bfs(char **map,int collectible,int *p,int *e);
-
+int the_first(t_bfs *a,int *p,int *count,int check);
+t_bfs	**bfs(char **map,int *collectible,int *p,int *e);
+t_bfs **fill_queue(char **map,int *p,int *coll);
 /************queue_operations */
 int isvisited(t_bfs *a,int x,int y);
 t_bfs *new_node(int x,int y,int index);
@@ -56,6 +55,12 @@ void add_next(t_bfs **a,int x,int y,int index);
 t_bfs *queue_position(t_bfs *a);
 
 /*************utils********* */
+void free_array(char **map);
 int the_same_index(t_bfs *a,int index);
+void change_moves(int *x,int *y,int moves);
+void clear_queue(t_bfs **a);
+
+/*************screen ********/
+void screen();
 #endif
 

@@ -67,7 +67,7 @@ void check_components(char **map,size_t line_size)
         i++;
     }
     if(e != 1 || c < 1 || p != 1)
-        ft_error("AA");
+        ft_error("AA",map,NULL,1);
 }
 int count_components(char *str,size_t line_size,char c)
 {
